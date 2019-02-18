@@ -44,7 +44,7 @@ class LinkyClient(object):
         self._data = {}
         self._timeout = timeout
 
-    def _get_httpsession(self):
+    def get_httpsession(self):
         """Set http session."""
         if self._session is None:
             self._session = requests.session()
@@ -168,7 +168,7 @@ class LinkyClient(object):
     def fetch_data(self):
         """Get the latest data from Enedis."""
         # Get http session
-        self._get_httpsession()
+        self.get_httpsession()
         
         for t in [HOURLY, DAILY, MONTHLY, YEARLY]:
             self._data[t] = self.get_data_per_period(t)
